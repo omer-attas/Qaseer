@@ -5,20 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qaseer - Smart Link Shortener</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
     
-    <!-- QR Code Library (Simple lightweight lib for browser) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
     <script>
@@ -68,7 +63,6 @@
   <body>
     <div id="root"></div>
 
-    <!-- MAIN APPLICATION SCRIPT -->
     <script type="text/babel">
       const { useState, useEffect, useRef, useCallback } = React;
 
@@ -271,67 +265,3 @@
                     <div className="absolute -inset-1 bg-gradient-to-r from-brand-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                     <div className="relative bg-white rounded-2xl shadow-xl p-2 flex items-center gap-2">
                       <div className="pl-4 pr-3 text-gray-400">
-                        <Icons.Link2 size={20} />
-                      </div>
-                      <input
-                        type="text"
-                        value={urlInput}
-                        onChange={(e) => setUrlInput(e.target.value)}
-                        placeholder="ضع الرابط الطويل هنا..."
-                        className="flex-1 p-3 bg-transparent outline-none text-gray-700 placeholder-gray-400 text-lg dir-ltr text-right"
-                        disabled={loading}
-                      />
-                      <button
-                        type="submit"
-                        disabled={loading || !urlInput}
-                        className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-transform active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
-                      >
-                        {loading ? (
-                          <>
-                            <Icons.Loader2 size={20} className="animate-spin" />
-                            <span>جاري...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Icons.Wand2 size={20} />
-                            <span>اختصار</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </form>
-                  {error && (
-                    <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-xl text-center border border-red-100">
-                      حدث خطأ أثناء معالجة الرابط.
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Result */}
-              {result && (
-                <div className="animate-fade-in w-full flex flex-col items-center gap-8">
-                  <QrCard data={result} />
-                  <button 
-                    onClick={handleReset}
-                    className="group flex items-center gap-2 px-8 py-3 bg-white border border-gray-200 shadow-sm rounded-full text-gray-600 hover:text-brand-600 hover:border-brand-200 hover:shadow-md hover:bg-brand-50 transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <Icons.RefreshCw size={18} className="group-hover:rotate-180 transition-transform duration-700" />
-                    <span className="font-semibold">اختصار رابط جديد</span>
-                  </button>
-                </div>
-              )}
-            </main>
-
-            <footer className="fixed bottom-0 w-full p-4 text-center text-gray-400 text-sm bg-white/80 backdrop-blur-md border-t border-gray-100">
-              ملف واحد HTML يعمل بدون خادم
-            </footer>
-          </div>
-        );
-      };
-
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
-    </script>
-  </body>
-</html>
